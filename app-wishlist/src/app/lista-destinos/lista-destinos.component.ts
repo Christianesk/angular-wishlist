@@ -35,4 +35,9 @@ export class ListaDestinosComponent implements OnInit {
     return false;
   }
 
+  elegido(d:DestinoViajeModel){
+    this.destinos.forEach((x)=>x.setSelected(false));
+    d.setSelected(true);
+  }
+
 }

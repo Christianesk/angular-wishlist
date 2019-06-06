@@ -8,6 +8,7 @@
   <div class="card-desc">
     <h3>{{destino.nombre}}</h3>
     <p>{{destino.descripcion}}</p>
-    <a href="#" class="btn-card">Ver más</a>
+    <a href="#" class="btn-card" (click)="ir()">Ir!</a>
+    <span class="float-right" [style.display]="destino.isSelected()?'':'none'"><i class="fas fa-star text-warning pr-1"></i>PREFERIDO</span>
   </div>
 </div>
