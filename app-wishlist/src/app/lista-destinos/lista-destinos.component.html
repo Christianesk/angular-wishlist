@@ -15,7 +15,7 @@
             </div>
             <div class="form-group">
               <label for="Imagen	Url">Imagen Url</label>
-              <input type="text" class="form-control" id="imagenUrl" placeholder="Copia y pega una url la lista..." #url>
+              <input type="text" class="form-control" id="imagenUrl" value="{{uri}}" placeholder="Copia y pega una url la lista..." #url >
             </div>
             <div class="form-group">
               <label for="descrip">Descripción</label>
@@ -33,7 +33,7 @@
         </div>
         <div class="card-body">
           <ul>
-            <li *ngFor="let u of listaUrl">{{u}}</li>
+            <li (click)="selectedUrl(u)" *ngFor="let u of listaUrl"><a href="javascriot:void(0);">{{u}}</a></li>
           </ul>
         </div>
       </div>

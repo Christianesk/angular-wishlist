@@ -10,6 +10,7 @@ export class ListaDestinosComponent implements OnInit {
 
   destinos: DestinoViajeModel[];
   listaUrl:string[];
+  uri:string;
 
 
   constructor() { 
@@ -38,6 +39,10 @@ export class ListaDestinosComponent implements OnInit {
   elegido(d:DestinoViajeModel){
     this.destinos.forEach((x)=>x.setSelected(false));
     d.setSelected(true);
+  }
+
+  selectedUrl(u:string){
+    this.uri=u;
   }
 
 }
