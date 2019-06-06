@@ -1,11 +1,11 @@
 <div class="container	content">
-  <div class="row row-flex">
+  <div class="row row-flex pt-4">
     <div class="col-md-6">
       <span class="anchor" id="formLogin"></span>
       <!-- form	card	login	with	validation	feedback	-->
       <div class="card	card-outline-secondary">
-        <div class="card-header">
-          <h3 class="mb-0">Whishlist</h3>
+        <div class="card-header bg-primary">
+          <h3 class="mb-0">Agrega un deseo</h3>
         </div>
         <div class="card-body">
           <form>
@@ -17,14 +17,18 @@
               <label for="Imagen	Url">Imagen Url</label>
               <input type="text" class="form-control" id="imagenUrl" placeholder="Copia y pega una url la lista..." #url>
             </div>
-            <button type="submit" class="btn	btn-primary" (click)="guardar(nombre.value,url.value)">Guardar!</button>
+            <div class="form-group">
+              <label for="descrip">Descripción</label>
+              <textarea class="form-control"  id="descrip" cols="30" rows="4" placeholder="Ingresa una descripcion" #descripcion></textarea>
+            </div>
+            <button type="submit" class="btn	btn-primary" (click)="guardar(nombre.value,url.value,descripcion.value)"><i class="fas fa-plus pr-1"></i>Agregar</button>
           </form>
         </div>
       </div>
     </div>
     <div class="col-md-6	">
       <div class="card	card-outline-secondary">
-        <div class="card-header">
+        <div class="card-header bg-warning">
           <h3 class="mb-0">Lista de Url de imagenes</h3>
         </div>
         <div class="card-body">

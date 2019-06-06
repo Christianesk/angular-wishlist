@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import {DestinoViajeModel} from '../models/destino-viaje.model';
 
 @Component({
@@ -10,6 +10,7 @@ export class ListaDestinosComponent implements OnInit {
 
   destinos: DestinoViajeModel[];
   listaUrl:string[];
+
 
   constructor() { 
     this.destinos = [];
@@ -28,9 +29,9 @@ export class ListaDestinosComponent implements OnInit {
   ngOnInit() {
   }
 
-  guardar(nombre:string, url:string): boolean{
+  guardar(nombre:string, url:string,descripcion:string): boolean{
 
-    this.destinos.push(new DestinoViajeModel(nombre,url));
+    this.destinos.push(new DestinoViajeModel(nombre,url,descripcion));
     return false;
   }
 
