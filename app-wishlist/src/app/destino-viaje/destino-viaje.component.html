@@ -17,7 +17,13 @@
         </span>
       </li>
     </ul>
-    <a href="#" class="btn-card" (click)="ir()">Ir!</a>
-    <span class="float-right" *ngIf="destino.isSelected()"><i class="fas fa-star text-warning pr-1"></i><span ngNonBindable>{{PREFERIDO}}</span></span>
+
+    <a [routerLink]="['/destino']">Ver Destino</a>
+
+  </div>
+  <div class="card-footer bg-white">
+    <a href="#" class="btn-card py-2" (click)="ir()">Ir!</a>
+    <span class="float-right" *ngIf="destino.isSelected()"><i class="fas fa-star text-warning pr-1"></i><span
+        ngNonBindable>{{PREFERIDO}}</span></span>
   </div>
 </div>
