@@ -11,7 +11,6 @@ export class FormDestinoViajeComponent implements OnInit {
 
   @Output() onItemAdded: EventEmitter<DestinoViajeModel>;
   fg: FormGroup;
-  uri:string='';
 
   constructor(fb: FormBuilder) {
     this.onItemAdded = new EventEmitter();
@@ -34,11 +33,4 @@ export class FormDestinoViajeComponent implements OnInit {
     this.onItemAdded.emit(d);
     return false;
   }
-
-  selectedUrl(u:string){
-    console.log(this.uri);
-    this.uri=u;
-    //this.fg.controls['url'].setValue(u);
-  }
-
 }

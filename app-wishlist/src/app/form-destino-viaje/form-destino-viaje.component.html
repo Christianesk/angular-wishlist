@@ -1,11 +1,13 @@
+
 <form [formGroup]="fg" (ngSubmit)="guardar(fg.controls['nombre'].value,fg.controls['url'].value,fg.controls['descripcion'].value)">
   <div class="form-group">
     <label for="nombre">Nombre</label>
     <input type="text" class="form-control" id="nombre" placeholder="Ingresar nombre..." [formControl]="fg.controls['nombre']">
   </div>
+
   <div class="form-group">
     <label for="Imagen	Url">Imagen Url</label>
-    <input type="text" class="form-control" id="imagenUrl" [value]="url"   placeholder="Selecciona una url de la lista..." [formControl]="fg.controls['url']" >
+    <input type="text" class="form-control" id="imagenUrl"   placeholder="Copia y pega una url de la lista..." [formControl]="fg.controls['url']" >
   </div>
   <div class="form-group">
     <label for="descrip">Descripción</label>

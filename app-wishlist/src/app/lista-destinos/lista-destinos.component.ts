@@ -1,13 +1,12 @@
 import { Component, OnInit, HostBinding, Output, EventEmitter } from '@angular/core';
 import {DestinoViajeModel} from '../models/destino-viaje.model';
 import {DestinosApiClient} from '../models/destinos-api-client.model';
-import { FormDestinoViajeComponent } from '../form-destino-viaje/form-destino-viaje.component';
 
 @Component({
   selector: 'app-lista-destinos',
   templateUrl: './lista-destinos.component.html',
   styleUrls: ['./lista-destinos.component.css'],
-  providers: [ DestinosApiClient ,FormDestinoViajeComponent]
+  providers: [ DestinosApiClient ]
 })
 export class ListaDestinosComponent implements OnInit {
 
@@ -16,7 +15,7 @@ export class ListaDestinosComponent implements OnInit {
   
 
 
-  constructor(private destinosApiClient: DestinosApiClient,private formDestinoViaje: FormDestinoViajeComponent) { 
+  constructor(private destinosApiClient: DestinosApiClient) { 
     this.onItemAdded= new EventEmitter();
     this.listaUrl = [
       'https://placeimg.com/380/230/nature/sepia',
