@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid';
 
 export class DestinoViajeModel {
 
@@ -5,9 +6,13 @@ export class DestinoViajeModel {
 
     public servicios: string[];
 
-    constructor(public nombre: string, public imagenUrl: string, public descripcion: string) {
-        this.servicios = ['pileta','desayuno']
-     }
+    id = uuid();
+
+    public votes = 0;
+
+    constructor(public nombre: string, public url: string, public descripcion: string) {
+        this.servicios = ['pileta', 'desayuno']
+    }
 
     isSelected(): boolean {
         return this.selected;
@@ -15,5 +20,12 @@ export class DestinoViajeModel {
 
     setSelected(s: boolean) {
         this.selected = s;
+    }
+
+    voteUp(): any {
+        this.votes++;
+    }
+    voteDown(): any {
+        this.votes--;
     }
 }

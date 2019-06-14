@@ -8,21 +8,7 @@
           <h3 class="mb-0">Agrega un deseo</h3>
         </div>
         <div class="card-body">
-          <form>
-            <div class="form-group">
-              <label for="nombre">Nombre</label>
-              <input type="text" class="form-control" id="nombre" placeholder="Ingresar nombre..." #nombre>
-            </div>
-            <div class="form-group">
-              <label for="Imagen	Url">Imagen Url</label>
-              <input type="text" class="form-control" id="imagenUrl" value="{{uri}}" placeholder="Selecciona una url de la lista..." #url >
-            </div>
-            <div class="form-group">
-              <label for="descrip">Descripción</label>
-              <textarea class="form-control"  id="descrip" cols="30" rows="4" placeholder="Ingresa una descripción" #descripcion></textarea>
-            </div>
-            <button type="submit" class="btn	btn-primary" (click)="guardar(nombre.value,url.value,descripcion.value)"><i class="fas fa-plus pr-1"></i>Agregar</button>
-          </form>
+          <app-form-destino-viaje (onItemAdded)="agregado($event)"></app-form-destino-viaje>
         </div>
       </div>
     </div>
@@ -33,7 +19,7 @@
         </div>
         <div class="card-body">
           <ul>
-            <li (click)="selectedUrl(u)" *ngFor="let u of listaUrl"><a href="javascriot:void(0);">{{u}}</a></li>
+            <li (click)="formDestinoViaje.selectedUrl(u)" *ngFor="let u of listaUrl"><a href="javascriot:void(0);">{{u}}</a></li>
           </ul>
         </div>
       </div>
@@ -42,6 +28,6 @@
   </div>
   <hr class="mb-5">
   <div class="row row-flex">
-    <app-destino-viaje *ngFor="let d of destinos; let i=index " [destino]="d" [idx]="i+1" (clicked)="elegido($event)"></app-destino-viaje>
+    <app-destino-viaje *ngFor="let d of destinosApiClient.destinos; let i=index " [destino]="d" [idx]="i+1" (clicked)="elegido($event)"></app-destino-viaje>
   </div>
 </div>

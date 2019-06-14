@@ -1,20 +1,23 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, Output, EventEmitter } from '@angular/core';
 import {DestinoViajeModel} from '../models/destino-viaje.model';
+import {DestinosApiClient} from '../models/destinos-api-client.model';
+import { FormDestinoViajeComponent } from '../form-destino-viaje/form-destino-viaje.component';
 
 @Component({
   selector: 'app-lista-destinos',
   templateUrl: './lista-destinos.component.html',
-  styleUrls: ['./lista-destinos.component.css']
+  styleUrls: ['./lista-destinos.component.css'],
+  providers: [ DestinosApiClient ,FormDestinoViajeComponent]
 })
 export class ListaDestinosComponent implements OnInit {
 
-  destinos: DestinoViajeModel[];
+  @Output() onItemAdded: EventEmitter<DestinoViajeModel>;
   listaUrl:string[];
-  uri:string;
+  
 
 
-  constructor() { 
-    this.destinos = [];
+  constructor(private destinosApiClient: DestinosApiClient,private formDestinoViaje: FormDestinoViajeComponent) { 
+    this.onItemAdded= new EventEmitter();
     this.listaUrl = [
       'https://placeimg.com/380/230/nature/sepia',
       'https://placeimg.com/380/230/arch/grayscale',
@@ -30,19 +33,14 @@ export class ListaDestinosComponent implements OnInit {
   ngOnInit() {
   }
 
-  guardar(nombre:string, url:string,descripcion:string): boolean{
-
-    this.destinos.push(new DestinoViajeModel(nombre,url,descripcion));
-    return false;
+  agregado(d:DestinoViajeModel){
+    this.destinosApiClient.add(d);
+    this.onItemAdded.emit(d);
   }
 
-  elegido(d:DestinoViajeModel){
-    this.destinos.forEach((x)=>x.setSelected(false));
-    d.setSelected(true);
-  }
-
-  selectedUrl(u:string){
-    this.uri=u;
+  elegido(e:DestinoViajeModel){
+    this.destinosApiClient.getAll().forEach((x)=>x.setSelected(false));
+    e.setSelected(true);
   }
 
 }
