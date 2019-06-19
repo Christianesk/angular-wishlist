@@ -19,7 +19,7 @@
         </div>
         <div class="card-body">
           <ul>
-            <li (click)="formDestinoViaje.selectedUrl(u)" *ngFor="let u of listaUrl">{{u}}</li>
+            <li *ngFor="let u of listaUrl">{{u}}</li>
           </ul>
         </div>
       </div>
@@ -30,4 +30,13 @@
   <div class="row row-flex">
     <app-destino-viaje *ngFor="let d of destinosApiClient.destinos; let i=index " [destino]="d" [idx]="i+1" (clicked)="elegido($event)"></app-destino-viaje>
   </div>
+
+  <hr class="mb-5">
+  <div class="row row-flex">
+    <h5>Actividad </h5>
+    <ul>
+      <li *ngFor="let u of updates;">{{u}}</li>
+    </ul>
+  </div>
+
 </div>

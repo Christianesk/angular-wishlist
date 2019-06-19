@@ -3,11 +3,17 @@
   <div class="form-group">
     <label for="nombre">Nombre</label>
     <input type="text" class="form-control" id="nombre" placeholder="Ingresar nombre..." [formControl]="fg.controls['nombre']">
+    <div *ngIf="fg.controls['nombre'].hasError('required')">nombre requerido!</div>
+    <div *ngIf="fg.controls['nombre'].hasError('invalidNombre')">nombre invalido!</div>
+    <div *ngIf="fg.controls['nombre'].hasError('minLongNombre')">nombre debe tener al menos {{miLongitud}} de largo!</div>
   </div>
 
   <div class="form-group">
     <label for="Imagen	Url">Imagen Url</label>
     <input type="text" class="form-control" id="imagenUrl"   placeholder="Copia y pega una url de la lista..." [formControl]="fg.controls['url']" >
+    <div *ngIf="fg.controls['url'].hasError('required')">Url requerido!</div>
+    <div *ngIf="fg.controls['url'].hasError('invalidUrl')">url invalido!</div>
+    <div *ngIf="fg.controls['url'].hasError('minLongUrl')">nombre debe tener al menos {{miLongitud}} de largo!</div>
   </div>
   <div class="form-group">
     <label for="descrip">Descripción</label>
