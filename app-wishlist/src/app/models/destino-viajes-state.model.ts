@@ -9,12 +9,12 @@ import { HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 
 // ESTADO
 export interface DestinosViajesState {
-    items: DestinoViajeModel[];
-    loading: boolean;
-    favorito: DestinoViajeModel;
+  items: DestinoViajeModel[];
+  loading: boolean;
+  favorito: DestinoViajeModel;
 }
 
-export function intializeDestinosViajesState() {
+export function initializeDestinosViajesState() {
   return {
     items: [],
     loading: false,
@@ -33,73 +33,66 @@ export enum DestinosViajesActionTypes {
 
 export class NuevoDestinoAction implements Action {
   type = DestinosViajesActionTypes.NUEVO_DESTINO;
-  constructor(public destino: DestinoViajeModel) {}
+  constructor(public destino: DestinoViajeModel) { }
 }
 
 export class ElegidoFavoritoAction implements Action {
   type = DestinosViajesActionTypes.ELEGIDO_FAVORITO;
-  constructor(public destino: DestinoViajeModel) {}
+  constructor(public destino: DestinoViajeModel) { }
 }
 
 export class VoteUpAction implements Action {
   type = DestinosViajesActionTypes.VOTE_UP;
-  constructor(public destino: DestinoViajeModel) {}
+  constructor(public destino: DestinoViajeModel) { }
 }
 
 export class VoteDownAction implements Action {
   type = DestinosViajesActionTypes.VOTE_DOWN;
-  constructor(public destino: DestinoViajeModel) {}
+  constructor(public destino: DestinoViajeModel) { }
 }
 
 export class InitMyDataAction implements Action {
   type = DestinosViajesActionTypes.INIT_MY_DATA;
-  constructor(public destinos: string[]) {}
+  constructor(public destinos: string[]) { }
 }
 
 export type DestinosViajesActions = NuevoDestinoAction | ElegidoFavoritoAction
   | VoteUpAction | VoteDownAction | InitMyDataAction;
 
 // REDUCERS
-/*export function reducerDestinosViajes(
+export function reducerDestinosViajes(
   state: DestinosViajesState,
   action: DestinosViajesActions
 ): DestinosViajesState {
   switch (action.type) {
-    case DestinosViajesActionTypes.INIT_MY_DATA: {
-      const destinos: string[] = (action as InitMyDataAction).destinos;
-      return {
-          ...state,
-          items: destinos.map((d) => new DestinoViajeModel(d, ''))
-        };
-    }
     case DestinosViajesActionTypes.NUEVO_DESTINO: {
       return {
-          ...state,
-          items: [...state.items, (action as NuevoDestinoAction).destino ]
-        };
+        ...state,
+        items: [...state.items, (action as NuevoDestinoAction).destino]
+      };
     }
     case DestinosViajesActionTypes.ELEGIDO_FAVORITO: {
-        state.items.forEach(x => x.setSelected(false));
-        const fav: DestinoViajeModel = (action as ElegidoFavoritoAction).destino;
-        fav.setSelected(true);
-        return {
-          ...state,
-          favorito: fav
-        };
+      state.items.forEach(x => x.setSelected(false));
+      const fav: DestinoViajeModel = (action as ElegidoFavoritoAction).destino;
+      fav.setSelected(true);
+      return {
+        ...state,
+        favorito: fav
+      };
     }
     case DestinosViajesActionTypes.VOTE_UP: {
-        const d: DestinoViajeModel = (action as VoteUpAction).destino;
-        d.voteUp();
-        return { ...state };
+      const d: DestinoViajeModel = (action as VoteUpAction).destino;
+      d.voteUp();
+      return { ...state };
     }
     case DestinosViajesActionTypes.VOTE_DOWN: {
-        const d: DestinoViajeModel = (action as VoteDownAction).destino;
-        d.voteDown();
-        return { ...state };
+      const d: DestinoViajeModel = (action as VoteDownAction).destino;
+      d.voteDown();
+      return { ...state };
     }
   }
   return state;
-}*/
+}
 
 // EFFECTS
 @Injectable()
@@ -110,5 +103,5 @@ export class DestinosViajesEffects {
     map((action: NuevoDestinoAction) => new ElegidoFavoritoAction(action.destino))
   );
 
-  constructor(private actions$: Actions) {}
+  constructor(private actions$: Actions) { }
 }
