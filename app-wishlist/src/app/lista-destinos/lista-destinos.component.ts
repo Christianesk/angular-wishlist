@@ -10,19 +10,12 @@ import { DestinosApiClient } from '../models/destinos-api-client.model';
 export class ListaDestinosComponent implements OnInit {
 
   @Output() onItemAdded: EventEmitter<DestinoViajeModel>;
-  updates: string[];
   listaUrl: string[];
 
 
 
   constructor(private destinosApiClient: DestinosApiClient) {
     this.onItemAdded = new EventEmitter();
-    this.updates = [];
-    this.destinosApiClient.suscribeOnChange((d: DestinoViajeModel) => {
-      if (d != null) {
-        this.updates.push('Se ha elegido a ' + d.nombre);
-      }
-    });
     this.listaUrl = [
       'https://placeimg.com/380/230/nature/sepia',
       'https://placeimg.com/380/230/arch/grayscale',
@@ -45,7 +38,6 @@ export class ListaDestinosComponent implements OnInit {
 
   elegido(e: DestinoViajeModel) {
     this.destinosApiClient.elegir(e);
-    e.setSelected(true);
   }
 
 }
