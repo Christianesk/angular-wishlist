@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DestinoViajeModel } from '../models/destino-viaje.model';
+import { ActivatedRoute } from '@angular/router';
+import { DestinosApiClient } from '../models/destinos-api-client.model';
 
 @Component({
   selector: 'app-destino-detalle',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DestinoDetalleComponent implements OnInit {
 
-  constructor() { }
+  destino: DestinoViajeModel;
+
+  constructor(private route: ActivatedRoute, private destinosApiClient: DestinosApiClient) { }
 
   ngOnInit() {
+    let id = this.route.snapshot.paramMap.get('id');
+    this.destino = null;
   }
 
 }

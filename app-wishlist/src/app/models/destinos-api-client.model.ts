@@ -6,8 +6,6 @@ import { ElegidoFavoritoAction, NuevoDestinoAction } from './destino-viajes-stat
 
 @Injectable()
 export class DestinosApiClient {
-  destinos: DestinoViajeModel[];
-  updates: string[];
 
   listaUrl: string[] = [
     'https://placeimg.com/380/230/nature/sepia',
@@ -22,33 +20,13 @@ export class DestinosApiClient {
 
 
   constructor(private store: Store<AppState>) { 
-    this.destinos=[];
-    this.updates = [];
-    this.store.select(state => state.destinos.favorito)
-      .subscribe(d => {
-        if (d != null) {
-          this.updates.push('Se ha elegido a ' + d.nombre);
-        }
-      });
   }
 
   add(d: DestinoViajeModel) {
-    this.destinos.push(d);
     this.store.dispatch(new NuevoDestinoAction(d));
   }
 
-  getById(id: String): DestinoViajeModel {
-    return this.destinos.filter(function (d) { return d.id.toString() === id; })[0];
-  }
-
-  getAll(): DestinoViajeModel[] {
-    return this.destinos;
-  }
-
   elegir(d: DestinoViajeModel) {
-
-    this.destinos.forEach(x => x.setSelected(false));
-    d.setSelected(true);
     this.store.dispatch(new ElegidoFavoritoAction(d));
   }
 

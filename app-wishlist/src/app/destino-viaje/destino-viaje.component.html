@@ -17,7 +17,11 @@
         </span>
       </li>
     </ul>
-
+    <div>
+      <a href="#"  (click)="voteUp()" class="material-icons md-18">thumb_up</a>
+      <a href="#"  (click)="voteDown()" class="material-icons md-18">thumb_down</a>
+      {{destino.votes}}
+    </div>
     <a [routerLink]="['/destino']">Ver Destino</a>
 
   </div>

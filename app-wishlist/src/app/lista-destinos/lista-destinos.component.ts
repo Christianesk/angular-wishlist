@@ -1,6 +1,8 @@
 import { Component, OnInit, HostBinding, Output, EventEmitter } from '@angular/core';
 import { DestinoViajeModel } from '../models/destino-viaje.model';
 import { DestinosApiClient } from '../models/destinos-api-client.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../app.module';
 
 @Component({
   selector: 'app-lista-destinos',
@@ -11,11 +13,21 @@ export class ListaDestinosComponent implements OnInit {
 
   @Output() onItemAdded: EventEmitter<DestinoViajeModel>;
   listaUrl: string[];
+  updates: string[];
+  all;
 
 
 
-  constructor(private destinosApiClient: DestinosApiClient) {
+  constructor(private destinosApiClient: DestinosApiClient, private store: Store<AppState>) {
     this.onItemAdded = new EventEmitter();
+    this.updates = [];
+    this.store.select(state => state.destinos.favorito)
+      .subscribe(d => {
+        if (d != null) {
+          this.updates.push('Se ha elegido a ' + d.nombre);
+        }
+      });
+    store.select(state => state.destinos.items).subscribe(items => this.all = items);
     this.listaUrl = [
       'https://placeimg.com/380/230/nature/sepia',
       'https://placeimg.com/380/230/arch/grayscale',
@@ -38,6 +50,10 @@ export class ListaDestinosComponent implements OnInit {
 
   elegido(e: DestinoViajeModel) {
     this.destinosApiClient.elegir(e);
+  }
+
+  getAll() {
+
   }
 
 }
