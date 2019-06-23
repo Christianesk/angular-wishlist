@@ -28,6 +28,7 @@ export enum DestinosViajesActionTypes {
   ELEGIDO_FAVORITO = '[Destinos Viajes] Favorito',
   VOTE_UP = '[Destinos Viajes] Vote Up',
   VOTE_DOWN = '[Destinos Viajes] Vote Down',
+  ELIMINAR_DESTINO = '[Destinos Viajes] Borrado',
   INIT_MY_DATA = '[Destinos Viajes] Init My Data'
 }
 
@@ -49,6 +50,11 @@ export class VoteUpAction implements Action {
 export class VoteDownAction implements Action {
   type = DestinosViajesActionTypes.VOTE_DOWN;
   constructor(public destino: DestinoViajeModel) { }
+}
+
+export class EliminarDestinoAction implements Action {
+  type = DestinosViajesActionTypes.ELIMINAR_DESTINO;
+  constructor(public destino: DestinoViajeModel) {}
 }
 
 export class InitMyDataAction implements Action {
@@ -89,6 +95,12 @@ export function reducerDestinosViajes(
       const d: DestinoViajeModel = (action as VoteDownAction).destino;
       d.voteDown();
       return { ...state };
+    }
+    case DestinosViajesActionTypes.ELIMINAR_DESTINO: {
+      return {
+        ...state,
+        items: [...state.items.filter(d => d.id != (action as EliminarDestinoAction).destino.id)]
+      };
     }
   }
   return state;
