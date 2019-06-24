@@ -1,8 +1,8 @@
 import { Component, OnInit, HostBinding, Output, EventEmitter } from '@angular/core';
-import { DestinoViajeModel } from '../models/destino-viaje.model';
-import { DestinosApiClient } from '../models/destinos-api-client.model';
+import { DestinoViajeModel } from '../../models/destino-viaje.model';
+import { DestinosApiClient } from '../../models/destinos-api-client.model';
 import { Store } from '@ngrx/store';
-import { AppState } from '../app.module';
+import { AppState } from '../../app.module';
 
 @Component({
   selector: 'app-lista-destinos',
