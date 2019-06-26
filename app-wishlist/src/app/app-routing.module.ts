@@ -18,8 +18,8 @@ export const childrenRoutesVuelos: Routes = [
 ];
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: ListaDestinosComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'home', component: ListaDestinosComponent,canActivate: [UsuarioLogueadoGuard] },
   { path: 'destino/:id', component: DestinoDetalleComponent },
   { path: 'login', component: LoginComponent },
   {
