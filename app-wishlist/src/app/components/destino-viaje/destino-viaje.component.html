@@ -22,7 +22,7 @@
       <a href="#"  (click)="voteDown()" class="material-icons md-18">thumb_down</a>
       {{destino.votes}}
     </div>
-    <a [routerLink]="['/destino']">Ver Destino</a>
+    <a [routerLink]="['/destino', destino.id]">Ver Destino</a>
     <br>
     <a href="#" (click)="eliminarDestino()" class="text-danger">Eliminar</a>
 
