@@ -1,11 +1,13 @@
-import { Injectable} from '@angular/core';
+import { Injectable, Inject, forwardRef } from '@angular/core';
 import { DestinoViajeModel } from '../models/destino-viaje.model';
 import { Store } from '@ngrx/store';
-import { AppState } from '../app.module';
+import { AppState, APP_CONFIG, AppConfig } from '../app.module';
 import { ElegidoFavoritoAction, NuevoDestinoAction } from './destino-viajes-state.model';
+import { HttpClientModule, HttpClient, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 
 @Injectable()
 export class DestinosApiClient {
+  destinos: DestinoViajeModel[] = [];
 
   listaUrl: string[] = [
     'https://placeimg.com/380/230/nature/sepia',
@@ -19,11 +21,33 @@ export class DestinosApiClient {
     'https://placeimg.com/380/230/animals/grayscale'];
 
 
-  constructor(private store: Store<AppState>) { 
+  constructor(
+    private store: Store<AppState>,
+    @Inject(forwardRef(() => APP_CONFIG)) private config: AppConfig,
+    private http: HttpClient
+  ) {
+    this.store
+      .select(state => state.destinos)
+      .subscribe((data) => {
+        console.log('destinos sub store');
+        console.log(data);
+        this.destinos = data.items;
+      });
+    this.store
+      .subscribe((data) => {
+        console.log('all store');
+        console.log(data);
+      });
   }
 
   add(d: DestinoViajeModel) {
-    this.store.dispatch(new NuevoDestinoAction(d));
+    const headers: HttpHeaders = new HttpHeaders({ 'X-API-TOKEN': 'token-seguridad' });
+    const req = new HttpRequest('POST', this.config.apiEndpoint + '/my', { nuevo: d.nombre }, { headers: headers });
+    this.http.request(req).subscribe((data: HttpResponse<{}>) => {
+      if (data.status === 200) {
+        this.store.dispatch(new NuevoDestinoAction(d));
+      }
+    });
   }
 
   elegir(d: DestinoViajeModel) {
@@ -31,7 +55,11 @@ export class DestinosApiClient {
   }
 
   getById(id: String): DestinoViajeModel {
-    return null;
+    return this.destinos.filter(function (d) { return d.id.toString() === id; })[0];
+  }
+
+  getAll(): DestinoViajeModel[] {
+    return this.destinos;
   }
 
 
