@@ -30,5 +30,9 @@ export class DestinosApiClient {
     this.store.dispatch(new ElegidoFavoritoAction(d));
   }
 
+  getById(id: String): DestinoViajeModel {
+    return null;
+  }
+
 
 }
