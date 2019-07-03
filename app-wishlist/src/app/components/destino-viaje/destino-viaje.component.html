@@ -18,9 +18,15 @@
       </li>
     </ul>
     <div>
-      <a href="#"  (click)="voteUp()" class="material-icons md-18">thumb_up</a>
-      <a href="#"  (click)="voteDown()" class="material-icons md-18">thumb_down</a>
-      {{destino.votes}}
+        <a href="#" (click)="voteUp()" appTrackearClick data-trackear-tags="destino_vote_up lista_destinos_item">
+            <i class="material-icons md-18">thumb_up</i>
+        </a>
+        &nbsp;
+        <a href="#" (click)="voteDown()" appTrackearClick data-trackear-tags="destino_vote_down lista_destinos_item">
+            <i class="material-icons md-18">thumb_down</i>
+        </a>
+        &nbsp;
+        Votos: {{destino.votes}}
     </div>
     <a [routerLink]="['/destino', destino.id]">Ver Destino</a>
     <br>
@@ -28,7 +34,7 @@
 
   </div>
   <div class="card-footer bg-white">
-    <a href="#" class="btn-card py-2" (click)="ir()">Ir!</a>
+    <a href="#" class="btn-card py-2" (click)="ir()" appTrackearClick data-trackear-tags="destino_elegir_preferido lista_destinos_item">Ir!</a>
     <span class="float-right" *ngIf="destino.isSelected()"><i class="fas fa-star text-warning pr-1"></i><span
         ngNonBindable>{{PREFERIDO}}</span></span>
   </div>
