@@ -29,6 +29,7 @@ import { DestinoViajeModel } from './models/destino-viaje.model';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { Observable, from } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
+import { EspiameDirective } from './espiame.directive';
 
 
 // app config
@@ -148,7 +149,8 @@ function HttpLoaderFactory(http: HttpClient) {
     VuelosComponentComponent,
     VuelosMainComponentComponent,
     VuelosMasInfoComponentComponent,
-    VuelosDetalleComponentComponent
+    VuelosDetalleComponentComponent,
+    EspiameDirective
   ],
   imports: [
     BrowserModule,
