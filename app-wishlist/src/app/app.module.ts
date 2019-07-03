@@ -5,6 +5,7 @@ import { StoreModule as NgrxStoreModule, ActionReducerMap, Store } from '@ngrx/s
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule, HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import Dexie from 'dexie';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -165,6 +166,7 @@ function HttpLoaderFactory(http: HttpClient) {
           deps: [HttpClient]
       }
     }),
+    NgxMapboxGLModule
   ],
   providers: [AuthService, UsuarioLogueadoGuard,
     { provide: APP_CONFIG, useValue: APP_CONFIG_VALUE },
